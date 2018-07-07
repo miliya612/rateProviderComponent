@@ -1,5 +1,10 @@
 package rates
 
+import (
+	"math/rand"
+	"time"
+)
+
 type rate struct {
 	Currency string `json:"currency"`
 	Rate float32 `json:"rate"`
@@ -13,15 +18,15 @@ func getRates(base string) (rs rates, err error){
 		return nil, err
 	}
 	baseRate := rs.getBaseCurrencyRate(base)
-	for _, r := range rs {
-		r = convertBaseCurrencyOfRate(r, baseRate)
+	for i, r := range rs {
+		rs[i] = convertBaseCurrencyOfRate(&r, baseRate)
 	}
 	return rs, nil
 }
 
-func convertBaseCurrencyOfRate(r rate, base rate) rate {
-	r.Rate = r.Rate/base.Rate
-	return r
+func convertBaseCurrencyOfRate(r *rate, base rate) rate {
+	rNum := adjustRandomNumber()
+	return rate{Currency:r.Currency, Rate:(r.Rate+rNum)/base.Rate}
 }
 
 func (rs rates)getBaseCurrencyRate(base string) rate {
@@ -31,4 +36,9 @@ func (rs rates)getBaseCurrencyRate(base string) rate {
 		}
 	}
 	return rate{}
+}
+
+func adjustRandomNumber() float32 {
+	rand.Seed(time.Now().UnixNano())
+	return float32(rand.Intn(10))/10
 }
