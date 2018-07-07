@@ -1,0 +1,22 @@
+[
+  {
+    "currency": "USD",
+    "rate": 1.0
+  },
+  {
+    "currency": "JPY",
+    "rate": 110.0
+  },
+  {
+    "currency": "TWD",
+    "rate": 30.4
+  },
+  {
+    "currency": "CNY",
+    "rate": 6.64
+  },
+  {
+    "currency": "KRW",
+    "rate": 1115.55
+  }
+]
