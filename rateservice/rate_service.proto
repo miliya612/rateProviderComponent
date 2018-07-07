@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package rateservice;
+
+service RateProvider {
+    rpc GetRate (RateRequest) returns (RateResponse) {
+    };
+    rpc GetSupportedCurrencies (Empty) returns (Currencies) {};
+}
+
+message RateRequest {
+    string base = 1;
+    repeated string counter = 2;
+}
+
+message RateResponse {
+    string base = 1;
+    string date = 2;
+    repeated Rates rates = 3;
+}
+
+message Currencies {
+    repeated string currency = 1;
+}
+
+message Rates {
+    string currency = 1;
+    float value = 2;
+}
+
+message Empty {}
