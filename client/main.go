@@ -22,7 +22,7 @@ func main() {
 	}
 	defer conn.Close()
 	client := pb.NewRateProviderClient(conn)
-	printRates(client, &pb.RateRequest{Base: "USD", Counter: []string{"JPY"}})
+	printRates(client, &pb.RateRequest{Base: "USD", Counter: []string{"JPY", "TWD", "USD"}})
 	printCurrencies(client, &pb.Empty{})
 }
 

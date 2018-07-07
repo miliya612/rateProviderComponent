@@ -6,7 +6,7 @@ import (
 )
 
 func GetRate(req *pb.RateRequest) (res *pb.RateResponse, err error) {
-	rs, err := getRates(req.Base)
+	rs, err := getRates(req.Base, req.Counter)
 	if err != nil {
 		return nil, err
 	}
